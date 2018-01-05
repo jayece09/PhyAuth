@@ -116,24 +116,19 @@ test1=np.asarray(z1);
 
 my_df = pd.DataFrame(test)
 my_df.to_csv('pdata_pass.csv', index=False, header=False)
-#print (my_df)
-x = np.linspace(0,2*np.pi,100)
-print (x)
-#print (test)
-#print (p1)
-y = np.sin(x) + np.random.random(100) * 0.2
 
 test = list(map(int, test));
 test1 = list(map(int, test1));
 test=np.asarray(test);
 test1=np.asarray(test1);
 print (test)
-yhat = savitzky_golay(test, 100, 5) # window size 51, polynomial order 3
-yhat1=savitzky_golay(test1, 100, 5)
+yhat = savitzky_golay(test, 200, 5) # window size 51, polynomial order 3
+yhat1=savitzky_golay(test1, 200, 5)
 #print (test)
 plt.plot(yhat)
 plt.plot(test, color='red')
 plt.plot(yhat1,color='black')
+plt.plot(test1,color='yellow')
 plt.show()
 #Zf = savitzky_golay( test, window_size=29, order=4)
 
