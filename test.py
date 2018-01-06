@@ -147,13 +147,16 @@ plt.show()
 #Zf = savitzky_golay( test, window_size=29, order=4)
 
 ## Arrays to compare: yhat and yhat1: Cross-Correlation after normalisation
-yhat_m=np.array(yhat)/np.maximum(yhat);
-yhat1_m=np.array(yhat1)/np.maximum(yhat1);
+yhat_m=np.array(yhat)/np.amax(yhat);
+yhat1_m=np.array(yhat1)/np.amax(yhat1);
 
-corr=np.correlate(yhat_m,yhat1_m)/2000;
+corr=np.correlate(yhat_m,yhat1_m)/2000; # Normalise with number of samples
 
 print(corr)
 
+plt.plot(yhat_m)
+plt.plot(yhat1_m)
+plt.show()
 
 test1=np.asarray(z1);
 my_df1 = pd.DataFrame(test1)
