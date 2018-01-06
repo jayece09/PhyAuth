@@ -128,7 +128,11 @@ yhat1=savitzky_golay(test1, 200, 5)
 
 m=np.mean(yhat);
 m1=np.mean(yhat1);
-
+marray=np.ones(2000)
+m1array=np.ones(2000)
+marray=marray*m
+m1array=m1array*m1
+#print(marray)
 # arr=[];
 # ik=0;
 # for ii in yhat:
@@ -143,11 +147,14 @@ plt.plot(yhat)
 plt.plot(test, color='red')
 plt.plot(yhat1,color='black')
 plt.plot(test1,color='yellow')
+plt.plot(marray)
+plt.plot(m1array)
 plt.show()
 #Zf = savitzky_golay( test, window_size=29, order=4)
 
 ## Arrays to compare: yhat and yhat1: Cross-Correlation after normalisation
 yhat_m=np.array(yhat)/np.amax(yhat);
+
 yhat1_m=np.array(yhat1)/np.amax(yhat1);
 
 corr=np.correlate(yhat_m,yhat1_m)/2000; # Normalise with number of samples
@@ -157,6 +164,10 @@ print(corr)
 plt.plot(yhat_m)
 plt.plot(yhat1_m)
 plt.show()
+
+
+
+
 
 test1=np.asarray(z1);
 my_df1 = pd.DataFrame(test1)
