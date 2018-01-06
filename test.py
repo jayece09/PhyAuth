@@ -24,7 +24,8 @@ for line in reader1:
     s = s[:0] + s[8:]
     d0.append(float(s))
     d1.append(line[1])
-
+	
+	
 for line in reader2:
     s=line[0]
     s = s[:0] + s[8:]
@@ -121,9 +122,22 @@ test = list(map(int, test));
 test1 = list(map(int, test1));
 test=np.asarray(test);
 test1=np.asarray(test1);
-print (test)
+#print (test)
 yhat = savitzky_golay(test, 200, 5) # window size 51, polynomial order 3
 yhat1=savitzky_golay(test1, 200, 5)
+
+m=np.mean(yhat);
+m1=np.mean(yhat1);
+
+# arr=[];
+# ik=0;
+# for ii in yhat:
+	# if ii> (m+ 0.3*np.var(yhat))
+		# arr(ik)=1
+		# else
+		# arr(ik)=0;
+			
+
 #print (test)
 plt.plot(yhat)
 plt.plot(test, color='red')
@@ -132,10 +146,19 @@ plt.plot(test1,color='yellow')
 plt.show()
 #Zf = savitzky_golay( test, window_size=29, order=4)
 
+## Arrays to compare: yhat and yhat1: Cross-Correlation after normalisation
+yhat_m=np.array(yhat)/np.maximum(yhat);
+yhat1_m=np.array(yhat1)/np.maximum(yhat1);
+
+corr=np.correlate(yhat_m,yhat1_m)/2000;
+
+print(corr)
+
+
 test1=np.asarray(z1);
 my_df1 = pd.DataFrame(test1)
 my_df1.to_csv('desk_pass.csv', index=False, header=False)
-print (my_df1)
+#print (my_df1)
 # print (test);
 # test.tofile('foo.csv',sep=',',format='%10.5f');
 plt.plot(p1)
