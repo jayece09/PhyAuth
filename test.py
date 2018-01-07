@@ -32,8 +32,8 @@ for line in reader2:
     i=near(d0,float(s)) 	
     z1.append(d1[i])
     p1.append(line[1])
-    print (s,d0[i])
-    print ("")
+    #print (s,d0[i])
+    #print ("")
 
 	
 def savitzky_golay(y, window_size, order, deriv=0, rate=1):
@@ -126,6 +126,14 @@ test1=np.asarray(test1);
 yhat = savitzky_golay(test, 200, 5) # window size 51, polynomial order 3
 yhat1=savitzky_golay(test1, 200, 5)
 
+
+## Algorithm: If increaing note number of samples it increases to: N:- binary(N) would be the key.
+count_inc=0;
+count_dec=0;
+
+#for 
+
+## Normalisation and Shape correlation
 m=np.mean(yhat);
 m1=np.mean(yhat1);
 marray=np.ones(2000)
@@ -159,7 +167,7 @@ yhat1_m=np.array(yhat1)/np.amax(yhat1);
 
 corr=np.correlate(yhat_m,yhat1_m)/2000; # Normalise with number of samples
 
-print(corr)
+print('The correlation is ', corr)
 
 plt.plot(yhat_m)
 plt.plot(yhat1_m)
