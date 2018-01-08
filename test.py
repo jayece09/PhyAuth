@@ -131,7 +131,6 @@ yhat1=savitzky_golay(test1, 200, 5)
 count_inc=0;
 count_dec=0;
 
-#for 
 
 ## Normalisation and Shape correlation
 m=np.mean(yhat);
@@ -172,7 +171,98 @@ print('The correlation is ', corr)
 plt.plot(yhat_m)
 plt.plot(yhat1_m)
 plt.show()
+####################################################################
+#.............................QUANTIZATION..........................
 
+ii=0;
+c_pos=[];
+c_neg=[];
+count_pos=0;
+count_neg=0;
+cc_pos=0;
+cc_neg=0;
+key_pos=[];
+key_neg=[];
+key=[]
+print(np.size(yhat))
+while(ii<1997):
+	while(yhat[ii+1]>yhat[ii]) and (ii+1<1998):
+		count_pos=count_pos+1
+		#print('Positive count',ii)
+		#if (ii+1>7997):
+			#break
+		ii=ii+1;
+		cc_pos=cc_pos+1;
+	key_pos.append(bin(cc_pos));
+	c_pos.append(cc_pos);
+	key.append(bin(cc_pos))
+	cc_pos=0;
+	
+	while(yhat[ii+1]<yhat[ii]) and (ii+1<1998):
+		count_neg=count_neg+1;
+		#print('Negative count',ii)
+		ii=ii+1;
+		cc_neg=cc_neg+1;
+	key_neg.append(bin(cc_neg));
+	c_neg.append(cc_neg);
+	key.append(bin(cc_neg))
+	cc_neg=0;
+		
+print('Increasing order=', c_pos);
+print('Decreasing Order=', c_neg);
+print('Binary Pos Key=', key_pos)
+print('Binary Neg key=', key_neg)
+print('Final Key=', key)
+print(ii)
+print(count_neg)
+print(count_pos)
+
+########### Yhat1
+ii1=0;
+c_pos1=[];
+c_neg1=[];
+count_pos1=0;
+count_neg1=0;
+cc_pos1=0;
+cc_neg1=0;
+key_pos1=[];
+key_neg1=[];
+key1=[]
+print('Size of Yhat1=', np.size(yhat1))
+while(ii1<1997):
+	while(yhat1[ii1+1]>yhat1[ii1]) and (ii1+1<1998):
+		count_pos1=count_pos1+1
+		#print('Positive count of Phone',ii)
+		#if (ii+1>7997):
+			#break
+		ii1=ii1+1;
+		cc_pos1=cc_pos1+1;
+	key_pos1.append(bin(cc_pos1));
+	c_pos1.append(cc_pos1);
+	key1.append(bin(cc_pos1))
+	cc_pos1=0;
+	
+	while(yhat1[ii1+1]<yhat[ii1]) and (ii1+1<1998):
+		count_neg1=count_neg1+1;
+		#print('Negative count of Phone',ii)
+		ii1=ii1+1;
+		cc_neg1=cc_neg1+1;
+	key_neg1.append(bin(cc_neg1));
+	c_neg1.append(cc_neg1);
+	key1.append(bin(cc_neg1))
+	cc_neg1=0;
+		
+print('Increasing order Phone=', c_pos1);
+print('Decreasing Order Phone=', c_neg1);
+print('Binary Pos Key Phone=', key_pos1)
+print('Binary Neg key Phone=', key_neg1)
+print('Final Key Phone=', key1)
+print(ii1)
+print(count_neg1)
+print(count_pos1)
+
+
+######################################################
 
 
 
