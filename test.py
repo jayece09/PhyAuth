@@ -123,7 +123,7 @@ test1 = list(map(int, test1));
 test=np.asarray(test);
 test1=np.asarray(test1);
 #print (test)
-yhat = savitzky_golay(test, 200, 5) # window size 51, polynomial order 3
+yhat = savitzky_golay(test, 200, 5) # window size 51, polynomial order 3 # In 8_Jan 2018 version it was 200,5
 yhat1=savitzky_golay(test1, 200, 5)
 
 
@@ -171,6 +171,7 @@ print('The correlation is ', corr)
 plt.plot(yhat_m)
 plt.plot(yhat1_m)
 plt.show()
+
 ####################################################################
 #.............................QUANTIZATION..........................
 
@@ -210,10 +211,10 @@ while(ii<1997):
 		
 print('Increasing order=', c_pos);
 print('Decreasing Order=', c_neg);
-print('Binary Pos Key=', key_pos)
-print('Binary Neg key=', key_neg)
-print('Final Key=', key)
-print(ii)
+#print('Binary Pos Key=', key_pos)
+#print('Binary Neg key=', key_neg)
+#print('Final Key=', key)
+#print(ii)
 print(count_neg)
 print(count_pos)
 
@@ -230,9 +231,9 @@ key_neg1=[];
 key1=[]
 print('Size of Yhat1=', np.size(yhat1))
 while(ii1<1997):
-	while(yhat1[ii1+1]>yhat1[ii1]) and (ii1+1<1998):
+	while(yhat1[ii1+1]>=yhat1[ii1]) and (ii1+1<1999):
 		count_pos1=count_pos1+1
-		#print('Positive count of Phone',ii)
+		#print('Positive count of Phone',ii1)
 		#if (ii+1>7997):
 			#break
 		ii1=ii1+1;
@@ -242,9 +243,9 @@ while(ii1<1997):
 	key1.append(bin(cc_pos1))
 	cc_pos1=0;
 	
-	while(yhat1[ii1+1]<yhat[ii1]) and (ii1+1<1998):
+	while(yhat1[ii1+1]<=yhat1[ii1]) and (ii1+1<1999):
 		count_neg1=count_neg1+1;
-		#print('Negative count of Phone',ii)
+		#print('Negative count of Phone',ii1)
 		ii1=ii1+1;
 		cc_neg1=cc_neg1+1;
 	key_neg1.append(bin(cc_neg1));
@@ -254,10 +255,10 @@ while(ii1<1997):
 		
 print('Increasing order Phone=', c_pos1);
 print('Decreasing Order Phone=', c_neg1);
-print('Binary Pos Key Phone=', key_pos1)
-print('Binary Neg key Phone=', key_neg1)
-print('Final Key Phone=', key1)
-print(ii1)
+#print('Binary Pos Key Phone=', key_pos1)
+#print('Binary Neg key Phone=', key_neg1)
+#print('Final Key Phone=', key1)
+#print(ii1)
 print(count_neg1)
 print(count_pos1)
 
