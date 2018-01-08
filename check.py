@@ -37,20 +37,36 @@ count2=0;
 ii=0;
 count_pos=0;
 count_neg=0;
-cc=0
+cc_pos=0;
+cc_neg=0;
+key_pos=[];
+key_neg=[];
+key=[]
 print(np.size(y))
-while(ii<7990):
-	while(y[ii+1]>y[ii]):
+while(ii<7997):
+	while(y[ii+1]>y[ii]) and (ii+1<7998):
 		count_pos=count_pos+1
 		print('Positive count',ii)
+		#if (ii+1>7997):
+			#break
 		ii=ii+1;
-		
-	while(y[ii+1]<y[ii]):
+		cc_pos=cc_pos+1;
+	key_pos.append(bin(cc_pos));
+	key.append(bin(cc_pos))
+	cc_pos=0;
+	
+	while(y[ii+1]<y[ii]) and (ii+1<7998):
 		count_neg=count_neg+1;
 		print('Negative count',ii)
 		ii=ii+1;
+		cc_neg=cc_neg+1;
+	key_neg.append(bin(cc_neg));
+	key.append(bin(cc_neg))
+	cc_neg=0;
 		
-
+print('Pos Key=', key_pos)
+print('Neg key=', key_neg)
+print('Final Key=', key)
 print(ii)
 print(count_neg)
 print(count_pos)
