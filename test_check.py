@@ -4,8 +4,8 @@ import csv
 import pandas as pd
 from math import factorial
 
-file1=open("desk_saket.csv", "r")
-file2=open("pdata_saket.csv", "r")
+file1=open("desk.csv", "r")
+file2=open("pdata.csv", "r")
 reader1=csv.reader(file1)
 reader2=csv.reader(file2)
 d0=[]
@@ -123,8 +123,8 @@ test1 = list(map(int, test1));
 test=np.asarray(test);
 test1=np.asarray(test1);
 #print (test)
-yhat = savitzky_golay(test, 200, 5) # window size 51, polynomial order 3 # In 8_Jan 2018 version it was 200,5
-yhat1=savitzky_golay(test1, 200, 5)
+yhat = savitzky_golay(test, 220, 5) # window size 51, polynomial order 3 # In 8_Jan 2018 version it was 200,5
+yhat1=savitzky_golay(test1, 220, 5)
 
 
 ## Algorithm: If increaing note number of samples it increases to: N:- binary(N) would be the key.
@@ -153,7 +153,7 @@ m1array=m1array*m1
 plt.plot(yhat)
 plt.plot(test, color='red')
 plt.plot(yhat1,color='black')
-plt.plot(test1,color='green')
+plt.plot(test1,color='yellow')
 plt.plot(marray)
 plt.plot(m1array)
 plt.show()
@@ -186,8 +186,8 @@ key_pos=[];
 key_neg=[];
 key=[]
 print(np.size(yhat))
-while(ii<1470):
-	while(yhat_m[ii+1]>yhat_m[ii]) and (ii+1<1471):
+while(ii<1100):
+	while(yhat_m[ii+1]>yhat_m[ii]) and (ii+1<1101):
 		count_pos=count_pos+1
 		#print('Positive count',ii)
 		#if (ii+1>7997):
@@ -199,7 +199,7 @@ while(ii<1470):
 	key.append(bin(cc_pos))
 	cc_pos=0;
 	
-	while(yhat_m[ii+1]<yhat_m[ii]) and (ii+1<1471):
+	while(yhat_m[ii+1]<yhat_m[ii]) and (ii+1<1101):
 		count_neg=count_neg+1;
 		#print('Negative count',ii)
 		ii=ii+1;
@@ -230,8 +230,8 @@ key_pos1=[];
 key_neg1=[];
 key1=[]
 print('Size of Yhat1=', np.size(yhat1))
-while(ii1<1470):
-	while(yhat1_m[ii1+1]>=yhat1_m[ii1]) and (ii1+1<1471):
+while(ii1<1100):
+	while(yhat1_m[ii1+1]>=yhat1_m[ii1]) and (ii1+1<1101):
 		count_pos1=count_pos1+1
 		#print('Positive count of Phone',ii1)
 		#if (ii+1>7997):
@@ -243,7 +243,7 @@ while(ii1<1470):
 	key1.append(bin(cc_pos1))
 	cc_pos1=0;
 	
-	while(yhat1_m[ii1+1]<=yhat1_m[ii1]) and (ii1+1<1471):
+	while(yhat1_m[ii1+1]<=yhat1_m[ii1]) and (ii1+1<1101):
 		count_neg1=count_neg1+1;
 		#print('Negative count of Phone',ii1)
 		ii1=ii1+1;
@@ -266,12 +266,10 @@ print(count_pos1)
 ######################################################
 
 
-my_df = pd.DataFrame(yhat_m)
-my_df.to_csv('pdata_pass.csv', index=False, header=False)
 
 
 test1=np.asarray(z1);
-my_df1 = pd.DataFrame(yhat1_m)
+my_df1 = pd.DataFrame(test1)
 my_df1.to_csv('desk_pass.csv', index=False, header=False)
 #print (my_df1)
 # print (test);
